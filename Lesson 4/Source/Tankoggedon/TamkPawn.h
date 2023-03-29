@@ -78,4 +78,6 @@ protected:
 	float targetForwardAxisValue = 0.0f;
 	float targetRightAxisValue = 0.0f;
 	float targetRotationRight = 0.0f;
+
+	bool TypeOfCannon = true;
 };

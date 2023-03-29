@@ -94,11 +94,11 @@ void ATamkPawn::RotateRight(float Value)
 
 void ATamkPawn::Fire()
 {
-	if (Cannon)
+	if (TypeOfCannon && Cannon)
 	{
 		Cannon->Fire();
 	}
-	else if (SecondCannon)
+	else if (!TypeOfCannon && SecondCannon)
 	{
 		SecondCannon->Fire();
 	}
@@ -152,13 +152,19 @@ void ATamkPawn::SetupSecondCannon(TSubclassOf<ASecondCannon> newCannonClass)
 
 void ATamkPawn::ChangeCannon()
 {
-	if (SecondCannon)
+	if (TypeOfCannon && SecondCannon)
 	{
-		SetupCannon(CannonClass);
+		Cannon->SetActorHiddenInGame(true);
+		//SetupSecondCannon(SecondCannonClass);
+		SecondCannon->SetActorHiddenInGame(false);
+		TypeOfCannon = false;
 	}
-	else if (Cannon)
+	else if (!TypeOfCannon && Cannon)
 	{
-		SetupSecondCannon(SecondCannonClass);
+		SecondCannon->SetActorHiddenInGame(true);
+		//SetupCannon(CannonClass);
+		Cannon->SetActorHiddenInGame(false);
+		TypeOfCannon = true;
 	}
 }
 
@@ -167,8 +173,9 @@ void ATamkPawn::AmmoPickup()
 	if (SecondCannon)
 	{
 		SecondCannon->AmmoPickup();
+		ChangeCannon();
 	}
-	else if (Cannon)
+	if (Cannon)
 	{
 		Cannon->AmmoPickup();
 	}

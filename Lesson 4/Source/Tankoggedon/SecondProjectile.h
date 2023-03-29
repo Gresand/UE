@@ -16,16 +16,16 @@ public:
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component")
-		class UStaticMeshComponent* ProjectileMesh;
+	class UStaticMeshComponent* ProjectileMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
-		float MoveSpeed = 100.0f;
+	float MoveSpeed = 100.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
-		float MoveRate = 0.1f;
+	float MoveRate = 0.1f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
-		float Damage = 1.0f;
+	float Damage = 1.0f;
 
 	FTimerHandle MovementTimer;
 

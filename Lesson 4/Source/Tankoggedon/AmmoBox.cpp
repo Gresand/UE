@@ -12,7 +12,7 @@ AAmmoBox::AAmmoBox()
 	USceneComponent* SceneComp = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
 	RootComponent = SceneComp;
 
-	AmmoMesh = CreateAbstractDefaultSubobject<UStaticMeshComponent>(TEXT("AmmoMesh"));
+	AmmoMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("AmmoMesh"));
 	AmmoMesh->SetupAttachment(SceneComp);
 	AmmoMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	AmmoMesh->SetCollisionProfileName("OverlapAll");

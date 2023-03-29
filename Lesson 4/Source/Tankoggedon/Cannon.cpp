@@ -25,51 +25,15 @@ void ACannon::Fire()
 		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, "Can't shooting");
 		return;
 	}
-	if (CannonType == ECannonType::FireProjectile)
+	if (CannonType == ECannonType::FireProjectile && Ammo >=0)
 	{
-		//int NumTimesToFire = 3;
-		//int BulletInQueye = 0;
-		//if (nextShoot) {
-		//	GetWorld()->GetTimerManager().SetTimer(BurstShooting, [this, &BulletInQueye, &NumTimesToFire]()
-		//		{
-		//			nextShoot = false;
-		//			if (BulletInQueye <= NumTimesToFire) {
-						Shoot();
-					//	BulletInQueye += 1;
-					//	GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, FString::Printf(TEXT("BulletInQueye: %d"), BulletInQueye));
-					//}
-					//else
-					//{
-					//	GetWorldTimerManager().ClearTimer(BurstShooting);
-					//	GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, FString::Printf(TEXT("Queue ended")));
-					//	nextShoot = true;
-					//}
-				//}, 0.3f, true);
-			Ammo -= 1;
-		//}
+		Shoot();
+		Ammo -= 1;
 	}
-	else if (CannonType == ECannonType::FireTrace)
+	else if (CannonType == ECannonType::FireTrace && Ammo >= 0)
 	{
-		//int NumTimesToFire = 3;
-		//int BulletInQueye = 0;
-		//if (nextShoot) {
-			//GetWorld()->GetTimerManager().SetTimer(BurstShooting, [this, &BulletInQueye, &NumTimesToFire]()
-				//{
-					//nextShoot = false;
-					//if (BulletInQueye <= NumTimesToFire) {
-						Shoot();
-						//BulletInQueye += 1;
-						//GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, FString::Printf(TEXT("BulletInQueye: %d"), BulletInQueye));
-					//}
-					//else
-					//{
-						//GetWorldTimerManager().ClearTimer(BurstShooting);
-						//GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, FString::Printf(TEXT("Queue ended")));
-						//nextShoot = true;
-					//}
-				//}, 0.3f, true);
-			Ammo -= 1;
-		//}
+		Shoot();
+		Ammo -= 1;
 	}
 	//bReadyToFire = false;
 	if (Ammo <= 0)
@@ -95,20 +59,20 @@ void ACannon::FireSpecial()
 
 bool ACannon::IsReadyToFire()
 {
-		return nextShoot ? bReadyToFire = true : bReadyToFire = false;
+	return nextShoot ? bReadyToFire = true : bReadyToFire = false;
 }
 
 void ACannon::Reload()
 {
-		bReadyToFire = true;
-		if(Ammo <=0)
-			Ammo = 30;
+	bReadyToFire = true;
+	if(Ammo <=0)
+		Ammo = 30;
 }
 
 void ACannon::AmmoPickup()
 {
-	Ammo += 30;
 	GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Green, FString::Printf(TEXT("Ammo pickup: %d"), Ammo));
+	Ammo += 30;
 }
 
 void ACannon::BeginPlay()

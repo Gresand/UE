@@ -23,12 +23,12 @@ void ASecondCannon::Fire()
 		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, "Can't shooting");
 		return;
 	}
-	if (CannonType == ECannonRocket::Rocket)
+	if (CannonType == ECannonRocket::Rocket && Ammo >= 0)
 	{
 		Shoot();
 		Ammo -= 1;
 	}
-	else if (CannonType == ECannonRocket::Laser)
+	else if (CannonType == ECannonRocket::Laser && Ammo >= 0)
 	{
 		Shoot();
 		Ammo -= 1;
